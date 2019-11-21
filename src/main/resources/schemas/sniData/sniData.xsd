@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://nrg.wustl.edu/sni" xmlns:xdat="http://nrg.wustl.edu/xdat" xmlns:sni="http://nrg.wustl.edu/sni" xmlns:xnat="http://nrg.wustl.edu/xnat" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://nrg.wustl.edu/xnat" schemaLocation="../xnat/xnat.xsd"/>
+	<xs:element name="Stroke-Edema" type="sni:sniData"/>
+	<xs:complexType name="sniData">
+		<xs:complexContent>
+			<xs:extension base="xnat:imageAssessorData">
+				<xs:sequence>
+					<xs:element name="Site" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:whiteSpace value="preserve"/>
+								<xs:maxLength value="50"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="Subject_ID" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:integer">
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="Scan_date" type="xs:date" minOccurs="0"/>
+					<xs:element name="Scan_time" type="xs:time" minOccurs="0"/>
+					<xs:element name="Baseline" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:whiteSpace value="preserve"/>
+								<xs:maxLength value="10"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="Time_from_bl_hr" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:float">
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="Sequence" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:whiteSpace value="preserve"/>
+								<xs:maxLength value="50"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="CT_series_description" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:whiteSpace value="preserve"/>
+								<xs:maxLength value="50"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="Tilt" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:whiteSpace value="preserve"/>
+								<xs:maxLength value="50"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="URL_JPG" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:whiteSpace value="preserve"/>
+								<xs:maxLength value="500"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="X_dimension" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:integer">
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="Y_dimension" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:integer">
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="Slices_number" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:integer">
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="DICOM_pixel_size_x" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:float">
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="DICOM_pixel_size_y" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:float">
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="DICOM_slice_thickness" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:float">
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="NIFTI_pixel_size_x" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:float">
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="NIFTI_pixel_size_y" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:float">
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="NIFTI_slice_thickness" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:float">
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="Z_axial_brain_scans" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:integer">
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="Z_brain_thin_scans" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:integer">
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="Selected_scan_number" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:integer">
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="Coverage" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:float">
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="Cranial" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:float">
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="CSF" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:float">
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="Infarct" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:float">
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="Brain" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:float">
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

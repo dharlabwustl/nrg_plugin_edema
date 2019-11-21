@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+$page.setTitle("Stroke-Edema Details")
+$page.setLinkColor($ui.alink)
+$page.setVlinkColor($ui.vlink)
+ ##---------------------------------------- 
+ ## DO NOT MODIFY THIS FILE HERE
+ ##
+ ## TO MODIFY, COPY THIS FILE to src/main/resources/templates/screens/ and modify it there 
+ ##----------------------------------------
+#if ($turbineUtils.GetPassedParameter("popup", $data))
+	#set ($popup = $turbineUtils.GetPassedParameter("popup", data) )
+	#set ($popup = "false")
+#end
+<TABLE width="100%">
+	<TR>
+		<TD>
+			<table width="100%">
+				<TR>
+					<TD align="left" valign="middle">
+						<font face="$ui.sansSerifFonts" size="3"><b>Stroke Edema Details</b></font>
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<TABLE width="100%">
+				<TR>
+					<TD width="300" valign="top">
+						<TABLE class="xnat-table">
+							<TR><TD>Site</TD><TD>$!item.getStringProperty("sni:sniData/Site")</TD></TR>
+                            <TR><TD>Subject_ID</TD><TD>$!item.getIntegerProperty("sni:sniData/Subject_ID")</TD></TR>
+							<TR><TD>Scan_date</TD><TD>$!item.getProperty("sni:sniData/Scan_date")</TD></TR>
+							<TR><TD>Scan_time</TD><TD>$!item.getProperty("sni:sniData/Scan_time")</TD></TR>
+							<TR><TD>Baseline</TD><TD>$!item.getStringProperty("sni:sniData/Baseline")</TD></TR>
+	                        <TR><TD>Time_from_bl_hr</TD><TD>$!item.getDoubleProperty("sni:sniData/Time_from_bl_hr")</TD></TR>
+                            <TR><TD>Z_axial_brain_scans</TD><TD>$!item.getIntegerProperty("sni:sniData/Z_axial_brain_scans")</TD></TR>
+                            <TR><TD>Z_brain_thin_scans</TD><TD>$!item.getIntegerProperty("sni:sniData/Z_brain_thin_scans")</TD></TR>
+	                        <TR><TD>Selected_scan_number</TD><TD>$!item.getIntegerProperty("sni:sniData/Selected_scan_number")</TD></TR>
+							<TR><TD>Sequence</TD><TD>$!item.getStringProperty("sni:sniData/Sequence")</TD></TR>
+							<TR><TD>CT_series_description</TD><TD>$!item.getStringProperty("sni:sniData/CT_series_description")</TD></TR>
+							<TR><TD>Tilt</TD><TD>$!item.getStringProperty("sni:sniData/Tilt")</TD></TR>
+                            <TR><TD>X_dimension</TD><TD>$!item.getIntegerProperty("sni:sniData/X_dimension")</TD></TR>
+                            <TR><TD>Y_dimension</TD><TD>$!item.getIntegerProperty("sni:sniData/Y_dimension")</TD></TR>
+							<TR><TD>Slices_number</TD><TD>$!item.getIntegerProperty("sni:sniData/Slices_number")</TD></TR>
+							<TR><TD>DICOM_pixel_size_x</TD><TD>$!item.getDoubleProperty("sni:sniData/DICOM_pixel_size_x")</TD></TR>
+	                        <TR><TD>NIFTI_pixel_size_x</TD><TD>$!item.getDoubleProperty("sni:sniData/NIFTI_pixel_size_x")</TD></TR>
+							<TR><TD>DICOM_pixel_size_y</TD><TD>$!item.getDoubleProperty("sni:sniData/DICOM_pixel_size_y")</TD></TR>
+	                        <TR><TD>NIFTI_pixel_size_y</TD><TD>$!item.getDoubleProperty("sni:sniData/NIFTI_pixel_size_y")</TD></TR>
+							<TR><TD>DICOM_slice_thickness</TD><TD>$!item.getDoubleProperty("sni:sniData/DICOM_slice_thickness")</TD></TR>
+							<TR><TD>NIFTI_slice_thickness</TD><TD>$!item.getDoubleProperty("sni:sniData/NIFTI_slice_thickness")</TD></TR>
+							<TR><TD>Coverage</TD><TD>$!item.getDoubleProperty("sni:sniData/Coverage")</TD></TR>
+							<TR><TD>Cranial</TD><TD>$!item.getDoubleProperty("sni:sniData/Cranial")</TD></TR>
+							<TR><TD>CSF</TD><TD>$!item.getDoubleProperty("sni:sniData/CSF")</TD></TR>
+							<TR><TD>Infarct</TD><TD>$!item.getDoubleProperty("sni:sniData/Infarct")</TD></TR>
+							<TR><TD>Brain</TD><TD>$!item.getDoubleProperty("sni:sniData/Brain")</TD></TR>
+						</TABLE>
+					</TD>
+					<TD valign="top">
+						<table>
+							<TR><TD valign="top" align="left">#parse($turbineUtils.getTemplateName("actions",$om.getXSIType(),$project))</TD></TR>
+							<TR><TD valign="bottom" align="left"><a href="$!item.getStringProperty("sni:sniData/URL_JPG")" target="_blank"><img class="scan-snapshot" vspace="30" hspace="30" src="$!item.getStringProperty("sni:sniData/URL_JPG")"></a></TD></TR>
+						</table>
+					</TD>
+				</TR>
+			</TABLE>
+
+		</TD>
+	</TR>
+</TABLE>

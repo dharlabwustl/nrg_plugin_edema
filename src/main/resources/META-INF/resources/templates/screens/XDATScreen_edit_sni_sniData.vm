@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+$page.setTitle("XDAT")
+$page.setLinkColor($ui.alink)
+$page.setVlinkColor($ui.vlink)
+ ##---------------------------------------- 
+ ## DO NOT MODIFY THIS FILE HERE
+ ##
+ ## TO MODIFY, COPY THIS FILE to src/main/resources/templates/screens/ and modify it there 
+ ##----------------------------------------
+#set($months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"])
+#set($days = [ 1..31 ])
+#set($years = [ $!turbineUtils.getYear()..1900])
+#if ($data.message)
+<font color="red" size="3">$data.message</font>
+#end
+<p>
+<form ID="form1" name="form1" method="post" action="$link.setAction("ModifyImageAssessorData")">
+<input type="hidden" name="project" value="$!{project}" >
+#if($vr)
+	<font color="red">Invalid parameters:<BR>$vr.toHTML()</font>
+<HR>
+#end
+
+<TABLE width="100%">
+	<TR>
+		<TD>
+			<table width="100%">
+				<TR>
+					<TD align="left" valign="middle">
+						<DIV class="edit_title">Stroke Edema Details</DIV>
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<TABLE width="100%">
+				<TR>
+					<TD valign="top">
+						<TABLE class="xnat-table">
+							<TR><TD colspan='2'>
+								<hr>
+								#parse("/screens/xnat_edit_experimentData.vm")
+								<HR></TD></TR>
+							<tr>
+								<th align="left">Stroke-Edema ID</th>
+								<TD align="left">#xdatStringBox("sni:sniData.ID" $item "" $vr)</TD>
+							</tr>
+							<tr>
+								<TD colspan="2">#parse("/screens/EditProjectSpecificFields.vm")</TD>
+							</tr>
+							<TR><TD>imageSession_ID</TD><TD>#xdatStringBox("sni:sniData/imageSession_ID" $item "" $vr)</TD></TR>
+							<TR><TD>date</TD><TD>#xdatDateBox("sni:sniData/date" $item $vr $years)</TD></TR>
+							<TR><TD>time</TD><TD>#xdatTextBox("sni:sniData/time" $item "" $vr)</TD></TR>
+							<TR><TD>Site</TD><TD>#xdatStringBox("sni:sniData/Site" $item "" $vr)</TD></TR>
+							<TR><TD>Subject_ID</TD><TD>#xdatTextBox("sni:sniData/Subject_ID" $item "" $vr)</TD></TR>
+							<TR><TD>Scan_date</TD><TD>#xdatDateBox("sni:sniData/Scan_date" $item $vr $years)</TD></TR>
+							<TR><TD>Scan_time</TD><TD>#xdatTextBox("sni:sniData/Scan_time" $item "" $vr)</TD></TR>
+							<TR><TD>Baseline</TD><TD>#xdatStringBox("sni:sniData/Baseline" $item "" $vr)</TD></TR>
+							<TR><TD>Time_from_bl_hr</TD><TD>#xdatTextBox("sni:sniData/Time_from_bl_hr" $item "" $vr)</TD></TR>
+                            <TR><TD>Z_axial_brain_scans</TD><TD>#xdatTextBox("sni:sniData/Z_axial_brain_scans" $item "" $vr)</TD></TR>
+                            <TR><TD>Z_brain_thin_scans</TD><TD>#xdatTextBox("sni:sniData/Z_brain_thin_scans" $item "" $vr)</TD></TR>
+                            <TR><TD>Selected_scan_number</TD><TD>#xdatTextBox("sni:sniData/Selected_scan_number" $item "" $vr)</TD></TR>
+							<TR><TD>Sequence</TD><TD>#xdatStringBox("sni:sniData/Sequence" $item "" $vr)</TD></TR>
+							<TR><TD>CT_series_description</TD><TD>#xdatStringBox("sni:sniData/CT_series_description" $item "" $vr)</TD></TR>
+							<TR><TD>Tilt</TD><TD>#xdatStringBox("sni:sniData/Tilt" $item "" $vr)</TD></TR>
+##							<TR><TD>URI_JPG</TD><TD>#xdatStringBox("sni:sniData/URI_JPG" $item "" $vr)</TD></TR>
+							<TR><TD>X_dimension</TD><TD>#xdatTextBox("sni:sniData/X_dimension" $item "" $vr)</TD></TR>
+							<TR><TD>Y_dimension</TD><TD>#xdatTextBox("sni:sniData/Y_dimension" $item "" $vr)</TD></TR>
+							<TR><TD>Slices_number</TD><TD>#xdatTextBox("sni:sniData/Slices_number" $item "" $vr)</TD></TR>
+							<TR><TD>DICOM_pixel_size_x</TD><TD>#xdatTextBox("sni:sniData/DICOM_pixel_size_x" $item "" $vr)</TD></TR>
+                            <TR><TD>NIFTI_pixel_size_x</TD><TD>#xdatTextBox("sni:sniData/NIFTI_pixel_size_x" $item "" $vr)</TD></TR>
+							<TR><TD>DICOM_pixel_size_y</TD><TD>#xdatTextBox("sni:sniData/DICOM_pixel_size_y" $item "" $vr)</TD></TR>
+                            <TR><TD>NIFTI_pixel_size_y</TD><TD>#xdatTextBox("sni:sniData/NIFTI_pixel_size_y" $item "" $vr)</TD></TR>
+							<TR><TD>DICOM_slice_thickness</TD><TD>#xdatTextBox("sni:sniData/DICOM_slice_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>NIFTI_slice_thickness</TD><TD>#xdatTextBox("sni:sniData/NIFTI_slice_thickness" $item "" $vr)</TD></TR>
+							<TR><TD>Coverage</TD><TD>#xdatTextBox("sni:sniData/Coverage" $item "" $vr)</TD></TR>
+							<TR><TD>Cranial</TD><TD>#xdatTextBox("sni:sniData/Cranial" $item "" $vr)</TD></TR>
+							<TR><TD>CSF</TD><TD>#xdatTextBox("sni:sniData/CSF" $item "" $vr)</TD></TR>
+							<TR><TD>Infarct</TD><TD>#xdatTextBox("sni:sniData/Infarct" $item "" $vr)</TD></TR>
+							<TR><TD>Brain</TD><TD>#xdatTextBox("sni:sniData/Brain" $item "" $vr)</TD></TR>
+						</TABLE>
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+		#xdatEditProps($item $edit_screen)
+		<TR><TD COLSPAN=2 ALIGN=left><input type="button" ONCLICK="validateForm();"  name="eventSubmit_doInsert" value="Submit"/></TD></TR>
+		</TD>
+	</TR>
+</TABLE>
+</form>
+
+<script type="text/javascript">
+function validateForm()
+{
+   //INSERT CUSTOM CONTENT HERE
+
+   validateExperimentForm();
+   return false;
+}
+</script>
