@@ -158,6 +158,18 @@
 							</xs:restriction>
 						</xs:simpleType>
 					</xs:element>
+					<xs:element name="CSF_seg" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:float">
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="CSF_adj" minOccurs="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:float">
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
 					<xs:element name="Infarct" minOccurs="0">
 						<xs:simpleType>
 							<xs:restriction base="xs:float">

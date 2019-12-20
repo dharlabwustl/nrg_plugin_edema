@@ -1,71 +1,171 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<!DOCTYPE html PUBLIC "-//W3C//Dtd HTML 3.2//EN">
 $page.setTitle("Stroke-Edema Details")
 $page.setLinkColor($ui.alink)
 $page.setVlinkColor($ui.vlink)
- ##---------------------------------------- 
- ## DO NOT MODIFY THIS FILE HERE
- ##
- ## TO MODIFY, COPY THIS FILE to src/main/resources/templates/screens/ and modify it there 
- ##----------------------------------------
+ 
+
 #if ($turbineUtils.GetPassedParameter("popup", $data))
 	#set ($popup = $turbineUtils.GetPassedParameter("popup", data) )
 	#set ($popup = "false")
 #end
-<TABLE width="100%">
-	<TR>
-		<TD>
-			<table width="100%">
-				<TR>
-					<TD align="left" valign="middle">
-						<font face="$ui.sansSerifFonts" size="3"><b>Stroke Edema Details</b></font>
-					</TD>
-				</TR>
-			</TABLE>
-		</TD>
-	</TR>
-	<TR>
-		<TD>
-			<TABLE width="100%">
-				<TR>
-					<TD width="300" valign="top">
-						<TABLE class="xnat-table">
-							<TR><TD>Site</TD><TD>$!item.getStringProperty("sni:sniData/Site")</TD></TR>
-                            <TR><TD>Subject_ID</TD><TD>$!item.getIntegerProperty("sni:sniData/Subject_ID")</TD></TR>
-							<TR><TD>Scan_date</TD><TD>$!item.getProperty("sni:sniData/Scan_date")</TD></TR>
-							<TR><TD>Scan_time</TD><TD>$!item.getProperty("sni:sniData/Scan_time")</TD></TR>
-							<TR><TD>Baseline</TD><TD>$!item.getStringProperty("sni:sniData/Baseline")</TD></TR>
-	                        <TR><TD>Time_from_bl_hr</TD><TD>$!item.getDoubleProperty("sni:sniData/Time_from_bl_hr")</TD></TR>
-                            <TR><TD>Z_axial_brain_scans</TD><TD>$!item.getIntegerProperty("sni:sniData/Z_axial_brain_scans")</TD></TR>
-                            <TR><TD>Z_brain_thin_scans</TD><TD>$!item.getIntegerProperty("sni:sniData/Z_brain_thin_scans")</TD></TR>
-	                        <TR><TD>Selected_scan_number</TD><TD>$!item.getIntegerProperty("sni:sniData/Selected_scan_number")</TD></TR>
-							<TR><TD>Sequence</TD><TD>$!item.getStringProperty("sni:sniData/Sequence")</TD></TR>
-							<TR><TD>CT_series_description</TD><TD>$!item.getStringProperty("sni:sniData/CT_series_description")</TD></TR>
-							<TR><TD>Tilt</TD><TD>$!item.getStringProperty("sni:sniData/Tilt")</TD></TR>
-                            <TR><TD>X_dimension</TD><TD>$!item.getIntegerProperty("sni:sniData/X_dimension")</TD></TR>
-                            <TR><TD>Y_dimension</TD><TD>$!item.getIntegerProperty("sni:sniData/Y_dimension")</TD></TR>
-							<TR><TD>Slices_number</TD><TD>$!item.getIntegerProperty("sni:sniData/Slices_number")</TD></TR>
-							<TR><TD>DICOM_pixel_size_x</TD><TD>$!item.getDoubleProperty("sni:sniData/DICOM_pixel_size_x")</TD></TR>
-	                        <TR><TD>NIFTI_pixel_size_x</TD><TD>$!item.getDoubleProperty("sni:sniData/NIFTI_pixel_size_x")</TD></TR>
-							<TR><TD>DICOM_pixel_size_y</TD><TD>$!item.getDoubleProperty("sni:sniData/DICOM_pixel_size_y")</TD></TR>
-	                        <TR><TD>NIFTI_pixel_size_y</TD><TD>$!item.getDoubleProperty("sni:sniData/NIFTI_pixel_size_y")</TD></TR>
-							<TR><TD>DICOM_slice_thickness</TD><TD>$!item.getDoubleProperty("sni:sniData/DICOM_slice_thickness")</TD></TR>
-							<TR><TD>NIFTI_slice_thickness</TD><TD>$!item.getDoubleProperty("sni:sniData/NIFTI_slice_thickness")</TD></TR>
-							<TR><TD>Coverage</TD><TD>$!item.getDoubleProperty("sni:sniData/Coverage")</TD></TR>
-							<TR><TD>Cranial</TD><TD>$!item.getDoubleProperty("sni:sniData/Cranial")</TD></TR>
-							<TR><TD>CSF</TD><TD>$!item.getDoubleProperty("sni:sniData/CSF")</TD></TR>
-							<TR><TD>Infarct</TD><TD>$!item.getDoubleProperty("sni:sniData/Infarct")</TD></TR>
-							<TR><TD>Brain</TD><TD>$!item.getDoubleProperty("sni:sniData/Brain")</TD></TR>
-						</TABLE>
-					</TD>
-					<TD valign="top">
-						<table>
-							<TR><TD valign="top" align="left">#parse($turbineUtils.getTemplateName("actions",$om.getXSIType(),$project))</TD></TR>
-							<TR><TD valign="bottom" align="left"><a href="$!item.getStringProperty("sni:sniData/URL_JPG")" target="_blank"><img class="scan-snapshot" vspace="30" hspace="30" src="$!item.getStringProperty("sni:sniData/URL_JPG")"></a></TD></TR>
-						</table>
-					</TD>
-				</TR>
-			</TABLE>
 
-		</TD>
-	</TR>
-</TABLE>
+
+<h2>Stroke Edema Details</h2>
+<script type="text/javascript" src="$content.getURI("scripts/BasePopup.js")"></script>
+<script type="text/javascript" src="$content.getURI("scripts/FileViewer.js")"></script>
+<script type="text/javascript">
+    var _a = [];
+
+    _a.push({
+        "label": window.available_elements_getByName("$om.getXSIType()").singular +" $!om.getLabel() ($!om.getId())",
+        "ru":"/data/projects/$project/subjects/$om.getSubjectId()/experiments/$!item.getStringProperty("sni:sniData/imageSession_ID")/assessors/$om.getId()",
+        "redirect":serverRoot+"/data/experiments/$!item.getStringProperty("sni:sniData/imageSession_ID")?format=html",
+        canRead:true,
+        checked:true,
+        xsiType:window.available_elements_getByName("$om.getXSIType()").singular,date:"$!om.getDate()",
+        primary_label:"$!om.getIdentifier($project)"
+    });
+
+    var obj={};
+    obj.uri=serverRoot + "/REST/experiments/$!om.getImagesessionId()/assessors/$!om.getId()";
+    obj.refresh = serverRoot + "/data/services/refresh/catalog?options=" + encodeURIComponent("populateStats,append,delete,checksum") + "&XNAT_CSRF=" + csrfToken + "&resource=/archive/experiments/$!om.getId()";
+    obj.objectId = "$!om.getId()";
+    obj.objectType = "assessor";
+    obj.categories={};
+    obj.categories.ids=[];
+
+        #if($item.isActive() || $item.isQuarantine())
+            #if ($turbineUtils.canEdit($user, $item))
+            obj.canEdit=true;
+            #else
+            obj.canEdit=false;
+            #end
+            #if ($turbineUtils.canDelete($user, $item))
+            obj.canDelete=true;
+            #else
+            obj.canDelete=false;
+            #end
+        #else
+        obj.canEdit=false;
+        obj.canDelete=false;
+        #end
+
+        #if($om.getSortedScans().size()>0)
+        obj.categories.ids.push("scans");
+        obj.categories["scans"]=new Array();
+            #foreach($scan in $om.getSortedScans())
+            obj.categories["scans"].push({id:"$scan.getId()",label:"$!scan.getId() $!scan.getType()"});
+            #end
+        #end
+
+        #if($om.getReconstructions_reconstructedimage().size()>0)
+        obj.categories.ids.push("reconstructions");
+        obj.categories["reconstructions"]=new Array();
+            #foreach($recon in $om.getReconstructions_reconstructedimage())
+            obj.categories["reconstructions"].push({id:"$recon.getId()",label:"$!recon.getId() $!recon.getType()"});
+            #end
+        #end
+
+        #if($om.getMinimalLoadAssessors().size()>0)
+        obj.categories.ids.push("assessors");
+        obj.categories["assessors"]=new Array();
+            #foreach($assessor in $om.getMinimalLoadAssessors())
+            var element_name = window.available_elements_getByName("$!assessor.getXSIType()");
+            if(undefined != element_name && null != element_name){
+                obj.categories["assessors"].push({id:"$assessor.getId()",label:"$!assessor.getLabel() " + element_name.singular});
+            }else{
+                obj.categories["assessors"].push({id:"$assessor.getId()",label:"$!assessor.getLabel() $!assessor.getXSIType()"});
+            }
+            #end
+        #end
+
+    obj.isImageSession=false;
+    window.viewer=new FileViewer(obj);
+
+    function showFiles(){
+        window.viewer.render();
+    }
+</script>
+
+<div class="pull-right">
+	#parse($turbineUtils.getTemplateName("actions",$om.getXSIType(),$project))
+</div>
+
+<div class="edema-report-body">
+	<div style="display: table-cell; padding-right: 2em;">
+        <h3>Values</h3>
+        <table class="xnat-table">
+            <tr><th>Field</th><th>Value</th></tr>
+            <tr><td>Site</td><td>$!item.getStringProperty("sni:sniData/Site")</td></tr>
+            <tr><td>Subject_ID</td><td>$!item.getIntegerProperty("sni:sniData/Subject_ID")</td></tr>
+            <tr><td>Scan_date</td><td>$!item.getProperty("sni:sniData/Scan_date")</td></tr>
+            <tr><td>Scan_time</td><td>$!item.getProperty("sni:sniData/Scan_time")</td></tr>
+            <tr><td>Baseline</td><td>$!item.getStringProperty("sni:sniData/Baseline")</td></tr>
+            <tr><td>Time_from_bl_hr</td><td>$!item.getDoubleProperty("sni:sniData/Time_from_bl_hr")</td></tr>
+            <tr><td>Z_axial_brain_scans</td><td>$!item.getIntegerProperty("sni:sniData/Z_axial_brain_scans")</td></tr>
+            <tr><td>Z_brain_thin_scans</td><td>$!item.getIntegerProperty("sni:sniData/Z_brain_thin_scans")</td></tr>
+            <tr><td>Selected_scan_number</td><td>$!item.getIntegerProperty("sni:sniData/Selected_scan_number")</td></tr>
+            <tr><td>Sequence</td><td>$!item.getStringProperty("sni:sniData/Sequence")</td></tr>
+            <tr><td>CT_series_description</td><td>$!item.getStringProperty("sni:sniData/CT_series_description")</td></tr>
+            <tr><td>Tilt</td><td>$!item.getStringProperty("sni:sniData/Tilt")</td></tr>
+            <tr><td>X_dimension</td><td>$!item.getIntegerProperty("sni:sniData/X_dimension")</td></tr>
+            <tr><td>Y_dimension</td><td>$!item.getIntegerProperty("sni:sniData/Y_dimension")</td></tr>
+            <tr><td>Slices_number</td><td>$!item.getIntegerProperty("sni:sniData/Slices_number")</td></tr>
+            <tr><td>DICOM_pixel_size_x</td><td>$!item.getDoubleProperty("sni:sniData/DICOM_pixel_size_x")</td></tr>
+            <tr><td>NIFTI_pixel_size_x</td><td>$!item.getDoubleProperty("sni:sniData/NIFTI_pixel_size_x")</td></tr>
+            <tr><td>DICOM_pixel_size_y</td><td>$!item.getDoubleProperty("sni:sniData/DICOM_pixel_size_y")</td></tr>
+            <tr><td>NIFTI_pixel_size_y</td><td>$!item.getDoubleProperty("sni:sniData/NIFTI_pixel_size_y")</td></tr>
+            <tr><td>DICOM_slice_thickness</td><td>$!item.getDoubleProperty("sni:sniData/DICOM_slice_thickness")</td></tr>
+            <tr><td>NIFTI_slice_thickness</td><td>$!item.getDoubleProperty("sni:sniData/NIFTI_slice_thickness")</td></tr>
+            <tr><td>Coverage</td><td>$!item.getDoubleProperty("sni:sniData/Coverage")</td></tr>
+            <tr><td>Cranial</td><td>$!item.getDoubleProperty("sni:sniData/Cranial")</td></tr>
+            <tr><td>CSF_seg</td><td>$!item.getDoubleProperty("sni:sniData/CSF_seg")</td></tr>
+            <tr><td>CSF_adj</td><td>$!item.getDoubleProperty("sni:sniData/CSF_adj")</td></tr>
+            <tr><td>Infarct</td><td>$!item.getDoubleProperty("sni:sniData/Infarct")</td></tr>
+            <tr><td>Brain</td><td>$!item.getDoubleProperty("sni:sniData/Brain")</td></tr>
+        </table>
+    </div>
+
+    <div style="display: table-cell; padding-right: 2em;">
+        <h3>Snapshot</h3>
+        #if($!item.getStringProperty("sni:sniData/URL_JPG"))
+            <div
+                    class="snapshot-preview"
+                    style="background-image: url('$!item.getStringProperty("sni:sniData/URL_JPG")')"
+                    data-fullimg="$!item.getStringProperty("sni:sniData/URL_JPG")">
+            </div>
+            <p><em>Snapshot may be cropped. Click on image to view in full.</em></p>
+        #else
+            <em>No snapshot found.</em>
+        #end
+
+    </div>
+    <div class="clearfix clear"></div>
+
+</div>
+<div class="clearfix clear"></div>
+
+<script>
+	$(document).on('click','.snapshot-preview',function(e){
+	    e.preventDefault();
+	    var imgUrl = $(this).data('fullimg');
+	    XNAT.ui.dialog.open({
+            title: 'View Snapshot',
+            width: 1000,
+            content: spawn('div.snapshot-frame'),
+            beforeShow: function(obj){
+                var frame = obj.$modal.find('.snapshot-frame');
+                frame.append(spawn('img.scan-snapshot',{
+                    src: imgUrl
+                }))
+            },
+            buttons: [
+                {
+                    label: 'OK',
+                    isDefault: true,
+                    close: true
+                }
+            ]
+        })
+	});
+</script>
