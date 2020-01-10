@@ -164,6 +164,14 @@ $page.setVlinkColor($ui.vlink)
                     label: 'OK',
                     isDefault: true,
                     close: true
+                },
+                {
+                    label: 'Open In New Window',
+                    isDefault: false,
+                    close: false,
+                    action: function(obj){
+                        window.open(XNAT.url.rootUrl(imgUrl),"_thumbnail");
+                    }
                 }
             ]
         })
